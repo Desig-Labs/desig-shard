@@ -11,6 +11,10 @@ const configuration = () => ({
     ttl: env === 'development' ? 5 : 24 * 60 * 60,
     limit: env === 'development' ? 3 : 10,
   },
+  keypair: {
+    pubkey: process.env.MASTER_PUBKEY || '',
+    privkey: process.env.MASTER_PRIVKEY || '',
+  },
 })
 
 export type EnvironmentVariables = ReturnType<typeof configuration>
