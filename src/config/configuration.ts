@@ -1,3 +1,4 @@
+import appRootPath from 'app-root-path'
 import ip from 'ip'
 
 const env = process.env.NODE_ENV || 'development'
@@ -14,6 +15,9 @@ const configuration = () => ({
   keypair: {
     pubkey: process.env.MASTER_PUBKEY || '',
     privkey: process.env.MASTER_PRIVKEY || '',
+  },
+  level: {
+    root: appRootPath.resolve('./.level'),
   },
 })
 

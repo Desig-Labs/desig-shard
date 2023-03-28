@@ -8,10 +8,10 @@ import { UserHeader } from 'app/auth/auth.service'
 import { isAddress } from 'helpers/isAddress'
 
 @Injectable()
-export class ParseUserAuthPipe implements PipeTransform {
-  transform({ userId }: UserHeader) {
-    if (!userId) throw new UnauthorizedException()
-    return userId
+export class ParseSignerAuthPipe implements PipeTransform {
+  transform({ signerId }: UserHeader) {
+    if (!signerId) throw new UnauthorizedException()
+    return signerId
   }
 }
 

@@ -4,7 +4,7 @@ import { getPublicKey, verify } from '@noble/ed25519'
 import { decode, encode } from 'bs58'
 
 export type UserHeader = {
-  userId: string
+  signerId: string
 }
 
 @Injectable()
@@ -32,6 +32,6 @@ export class AuthService {
     if (expiredAt < Date.now()) throw new UnauthorizedException()
     const ok = await verify(decode(signature), decode(message), decode(from))
     if (!ok) throw new UnauthorizedException()
-    return { userId: from }
+    return { signerId: from }
   }
 }

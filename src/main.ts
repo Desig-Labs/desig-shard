@@ -18,9 +18,11 @@ async function bootstrap() {
   // Start
   const PORT = configuration().server.port
   const IP = configuration().server.ip
+  const ROOT = configuration().level.root
   await app.listen(PORT)
   console.info(
     `⚡️[server]: Server is running at http://localhost:${PORT} or http://${IP}:${PORT}`,
   )
+  console.info(`⚡️[server]: LevelDB is mounted in ${ROOT}`)
 }
 bootstrap()
