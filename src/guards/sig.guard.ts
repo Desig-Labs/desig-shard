@@ -11,7 +11,8 @@ export class SignatureStrategy extends PassportStrategy(Strategy, 'signature') {
   }
 
   async validate(token: string): Promise<UserHeader> {
-    return this.authSerive.verify(token)
+    const [message, signature] = token.split('/')
+    return this.authSerive.verify(message, signature)
   }
 }
 

@@ -38,6 +38,8 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/throttler": "^4.0.0",
+    "@noble/ed25519": "^1.7.3",
+    "bs58": "^5.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "ip": "^1.1.8",
