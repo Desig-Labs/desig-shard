@@ -1,15 +1,15 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
+  Param,
   Patch,
   Post,
   Query,
   UseGuards,
 } from '@nestjs/common'
 import { Auth } from 'decorators/auth.decorator'
-import { Roles } from 'decorators/roles.decorator'
-import { RolesGuard } from 'guards/roles.guard'
 import { SignatureGuard } from 'guards/auth.guard'
 import {
   ParseAddressPipe,
@@ -22,40 +22,38 @@ export class StorageController {
   constructor(private readonly service: StorageService) {}
 
   @Post()
-  @Roles('multisig')
-  @UseGuards(SignatureGuard, RolesGuard)
+  @UseGuards(SignatureGuard)
   async createStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) multisigId: string,
+    @Body('users') users: Record<string, string>,
   ) {
-    return this.service.createStorage('', { multisigId })
+    return this.service.upsertStorage(multisigId, users)
   }
 
   @Get()
-  @Roles('member')
-  @UseGuards(SignatureGuard, RolesGuard)
+  @UseGuards(SignatureGuard)
   async readStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) userId: string,
     @Query('multisig') multisigId: string,
   ) {
-    return this.service.readStorage(userId, { multisigId })
+    return this.service.readStorage(userId, multisigId)
   }
 
   @Patch()
-  @Roles('multisig')
-  @UseGuards(SignatureGuard, RolesGuard)
+  @UseGuards(SignatureGuard)
   async updateStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) multisigId: string,
+    @Body('users') users: Record<string, string>,
   ) {
-    return this.service.updateStorage('', { multisigId })
+    return this.service.upsertStorage(multisigId, users)
   }
 
-  @Delete()
-  @Roles('member')
-  @UseGuards(SignatureGuard, RolesGuard)
+  @Delete(':multisig')
+  @UseGuards(SignatureGuard)
   async deleteStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) userId: string,
-    @Query('multisig', ParseAddressPipe) multisigId: string,
+    @Param('multisig', ParseAddressPipe) multisigId: string,
   ) {
-    return this.service.deleteStorage(userId, { multisigId })
+    return this.service.deleteStorage(userId, multisigId)
   }
 }

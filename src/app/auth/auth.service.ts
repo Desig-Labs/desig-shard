@@ -2,9 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { getPublicKey, verify } from '@noble/ed25519'
 import { decode, encode } from 'bs58'
-import { UserRole } from 'decorators/roles.decorator'
 
-export type UserHeader = { signerId: string; role: UserRole }
+export type UserHeader = { signerId: string }
 
 @Injectable()
 export class AuthService {
@@ -31,7 +30,6 @@ export class AuthService {
     if (expiredAt < Date.now()) throw new UnauthorizedException()
     const ok = await verify(decode(signature), decode(message), decode(from))
     if (!ok) throw new UnauthorizedException()
-    const role = 'member'
-    return { signerId: from, role }
+    return { signerId: from }
   }
 }
