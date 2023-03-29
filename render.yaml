@@ -1,16 +1,49 @@
 services:
+  # Goku Shard
   - type: web
-    name: ${{branch}}.desig.io # Service name
+    name: goku.desig.io # Service name
     plan: standard # starter, standard, pro, pro plus, pro max, pro ultra
     region: oregon # oregon, frankfurt, ohio, singapore
-    branch: ${{branch}}
+    branch: goku
     env: node
     autoDeploy: true
     disk:
-      name: ${{branch}} # Disk name
+      name: goku # Disk name
       mountPath: /var/lib
       sizeGB: 1
     buildCommand: yarn build
     startCommand: yarn start:pro
-    domain: ${{branch}}.desig.io # Your domain
+    domain: goku.desig.io # Your domain
+    healthCheckPath: /health
+  # Gohan Shard
+  - type: web
+    name: gohan.desig.io
+    plan: standard
+    region: frankfurt
+    branch: gohan
+    env: node
+    autoDeploy: true
+    disk:
+      name: gohan
+      mountPath: /var/lib
+      sizeGB: 1
+    buildCommand: yarn build
+    startCommand: yarn start:pro
+    domain: gohan.desig.io
+    healthCheckPath: /health
+  # Goten Shard
+  - type: web
+    name: goten.desig.io
+    plan: standard
+    region: singapore
+    branch: goten
+    env: node
+    autoDeploy: true
+    disk:
+      name: goten
+      mountPath: /var/lib
+      sizeGB: 1
+    buildCommand: yarn build
+    startCommand: yarn start:pro
+    domain: goten.desig.io
     healthCheckPath: /health
