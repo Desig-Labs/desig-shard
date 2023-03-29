@@ -3,7 +3,7 @@ parameters:
 services:
   - type: web
     name: ${{id}}.desig.io
-    plan: standard # starter, standard, pro, pro plus, pro max, pro ultra
+    plan: starter # starter, standard, pro, pro plus, pro max, pro ultra
     region: oregon # oregon, frankfurt, ohio, singapore
     branch: master
     env: node
