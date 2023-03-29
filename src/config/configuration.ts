@@ -17,7 +17,10 @@ const configuration = () => ({
     privkey: process.env.MASTER_PRIVKEY || '',
   },
   level: {
-    root: appRootPath.resolve('./.level'),
+    root:
+      env === 'development'
+        ? appRootPath.resolve('./.level')
+        : '/var/lib/.level',
   },
 })
 
