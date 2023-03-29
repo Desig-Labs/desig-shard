@@ -11,6 +11,9 @@ services:
       name: goku # Disk name
       mountPath: /var/lib
       sizeGB: 1
+    envVars:
+      - key: MY_ID
+        value: goku
     buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: goku.desig.io # Your domain
@@ -27,6 +30,9 @@ services:
       name: gohan
       mountPath: /var/lib
       sizeGB: 1
+    envVars:
+      - key: MY_ID
+        value: gohan
     buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: gohan.desig.io
@@ -43,6 +49,9 @@ services:
       name: goten
       mountPath: /var/lib
       sizeGB: 1
+    envVars:
+      - key: MY_ID
+        value: goten
     buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: goten.desig.io
