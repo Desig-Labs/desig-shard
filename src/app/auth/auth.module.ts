@@ -1,11 +1,11 @@
 import { DynamicModule, Module } from '@nestjs/common'
 import { PassportModule } from '@nestjs/passport'
-import { SignatureStrategy } from 'guards/sig.guard'
+import { AuthStrategy } from 'guards/auth.guard'
 import { AuthService } from './auth.service'
 
 @Module({
   imports: [PassportModule],
-  providers: [AuthService, SignatureStrategy],
+  providers: [AuthService, AuthStrategy],
 })
 export class AuthModule {
   static forRoot({ isGlobal = false }: { isGlobal?: boolean }): DynamicModule {

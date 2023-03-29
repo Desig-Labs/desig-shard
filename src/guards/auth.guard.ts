@@ -5,7 +5,7 @@ import { Request } from 'express'
 import { Strategy } from 'passport-http-bearer'
 
 @Injectable()
-export class SignatureStrategy extends PassportStrategy(Strategy, 'signature') {
+export class AuthStrategy extends PassportStrategy(Strategy, 'signature') {
   constructor(private authSerive: AuthService) {
     super()
   }

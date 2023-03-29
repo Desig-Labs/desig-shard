@@ -8,7 +8,9 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { Auth } from 'decorators/auth.decorator'
-import { SignatureGuard } from 'guards/sig.guard'
+import { Roles } from 'decorators/roles.decorator'
+import { RolesGuard } from 'guards/roles.guard'
+import { SignatureGuard } from 'guards/auth.guard'
 import {
   ParseAddressPipe,
   ParseSignerAuthPipe,
@@ -20,7 +22,8 @@ export class StorageController {
   constructor(private readonly service: StorageService) {}
 
   @Post()
-  @UseGuards(SignatureGuard)
+  @Roles('multisig')
+  @UseGuards(SignatureGuard, RolesGuard)
   async createStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) multisigId: string,
   ) {
@@ -28,7 +31,8 @@ export class StorageController {
   }
 
   @Get()
-  @UseGuards(SignatureGuard)
+  @Roles('member')
+  @UseGuards(SignatureGuard, RolesGuard)
   async readStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) userId: string,
     @Query('multisig') multisigId: string,
@@ -37,7 +41,8 @@ export class StorageController {
   }
 
   @Patch()
-  @UseGuards(SignatureGuard)
+  @Roles('multisig')
+  @UseGuards(SignatureGuard, RolesGuard)
   async updateStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) multisigId: string,
   ) {
@@ -45,7 +50,8 @@ export class StorageController {
   }
 
   @Delete()
-  @UseGuards(SignatureGuard)
+  @Roles('multisig')
+  @UseGuards(SignatureGuard, RolesGuard)
   async deleteStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) userId: string,
     @Query('multisig', ParseAddressPipe) multisigId: string,
