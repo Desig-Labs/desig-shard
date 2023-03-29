@@ -50,7 +50,7 @@ export class StorageController {
   }
 
   @Delete()
-  @Roles('multisig')
+  @Roles('member')
   @UseGuards(SignatureGuard, RolesGuard)
   async deleteStorage(
     @Auth(ParseSignerAuthPipe, ParseAddressPipe) userId: string,
