@@ -11,7 +11,7 @@ services:
       name: goku # Disk name
       mountPath: /var/lib
       sizeGB: 1
-    buildCommand: yarn build
+    buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: goku.desig.io # Your domain
     healthCheckPath: /health
@@ -27,7 +27,7 @@ services:
       name: gohan
       mountPath: /var/lib
       sizeGB: 1
-    buildCommand: yarn build
+    buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: gohan.desig.io
     healthCheckPath: /health
@@ -43,7 +43,7 @@ services:
       name: goten
       mountPath: /var/lib
       sizeGB: 1
-    buildCommand: yarn build
+    buildCommand: yarn && yarn build
     startCommand: yarn start:pro
     domain: goten.desig.io
     healthCheckPath: /health
