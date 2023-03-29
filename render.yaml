@@ -1,16 +1,16 @@
 services:
   - type: web
-    name: goku.desig.io # Service name
-    plan: starter # starter, standard, pro, pro plus, pro max, pro ultra
+    name: ${{branch}}.desig.io # Service name
+    plan: standard # starter, standard, pro, pro plus, pro max, pro ultra
     region: oregon # oregon, frankfurt, ohio, singapore
-    branch: master
+    branch: ${{branch}}
     env: node
-    autoDeploy: false
+    autoDeploy: true
     disk:
-      name: goku # Disk name
+      name: ${{branch}} # Disk name
       mountPath: /var/lib
       sizeGB: 1
     buildCommand: yarn build
     startCommand: yarn start:pro
-    domain: goku.desig.io # Your domain
+    domain: ${{branch}}.desig.io # Your domain
     healthCheckPath: /health
