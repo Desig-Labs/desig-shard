@@ -1,15 +1,13 @@
-parameters:
-  id: shard1
 services:
   - type: web
-    name: ${{id}}.desig.io
+    name: ${{id}}.desig.io # Name your services
     plan: starter # starter, standard, pro, pro plus, pro max, pro ultra
     region: oregon # oregon, frankfurt, ohio, singapore
     branch: master
     env: node
     autoDeploy: false
     disk:
-      name: ${{id}}
+      name: ${{id}} # Name your services
       mountPath: /var/lib
       sizeGB: 1
     healthCheckPath: /health
